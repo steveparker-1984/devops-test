@@ -37,7 +37,7 @@ pipeline {
         stage("Deploy Prerequisites") {
             steps {
                 script {
-                    sh "sceptre --var branch=${branch} ${operation} dev/prerequisites"
+                    sh "sceptre --var branch=${branch} ${operation} dev/prerequisites -y"
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
             steps {
                 script {
                     echo "placeholder"
-                    sh "sceptre --var branch=${branch} ${operation} dev/app"
+                    sh "sceptre --var branch=${branch} ${operation} dev/app -y"
                 }
             }
         }
