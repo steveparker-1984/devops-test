@@ -26,6 +26,7 @@ pipeline {
         stage ('Validate') {
             steps {
                 script {
+                    echo "placeholder"
                     // sh "sceptre --var branch=${branch} validate dev"
                     // sh "npm test"
                 }
@@ -35,6 +36,7 @@ pipeline {
         stage("Deploy Prerequisites") {
             steps {
                 script {
+                    echo "placeholder"
                     // sh "sceptre --var branch=${branch} ${input_params.Operation} dev/prerequisites"
                 }
             }
@@ -46,6 +48,7 @@ pipeline {
             }
             steps {
                 script {
+                    echo "placeholder"
                     // sh 'npm ci'
                     
                 }
@@ -55,6 +58,7 @@ pipeline {
         stage("Deploy App") {
             steps {
                 script {
+                    echo "placeholder"
                     // sh "sceptre --var branch=${branch} ${input_params.Operation} dev/app"
                 }
             }
