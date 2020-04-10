@@ -126,12 +126,12 @@ Resources:
           aws s3 cp s3://${AssetsBucket}/${Asset} .
           unzip ${Asset} -d .
 
-          pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
-          /usr/local/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource AutoScalingGroup --region ${AWS::Region}
-          
           pm2 start index.js
           pm2 startup
           pm2 save
+
+          pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
+          /usr/local/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource AutoScalingGroup --region ${AWS::Region} || true
       SecurityGroups: 
         - !Ref InstanceSecurityGroup
       InstanceType: t2.small
