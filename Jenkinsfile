@@ -24,12 +24,14 @@ pipeline {
             }
         }
 
-        stage ('Validate') {
+        stage ('Tests') {
             steps {
                 script {
-                    echo "placeholder"
                     sh "sceptre --var branch=${branch} validate dev"
-                    sh "npm test"
+                    
+                    dir("src"){
+                        sh "npm test"
+                    }   
                 }
             }
         }
@@ -38,6 +40,7 @@ pipeline {
             steps {
                 script {
                     sh "sceptre --var branch=${branch} ${operation} dev/prerequisites -y"
+                    assets_bucket = sh(script:"eval \$(sceptre --var branch=master --ignore-dependencies list outputs dev/prerequisites.yaml --export=envvar) && echo \$SCEPTRE_AssetsBucket", returnStdout: true).trim()
                 }
             }
         }
@@ -46,7 +49,10 @@ pipeline {
             steps {
                 script {
                     if (operation == 'launch') {
-                        sh 'npm ci'
+                        dir("src"){
+                            sh 'npm ci'
+                        }
+                        echo "package src dir to ${assets_bucket}"
                     }
                 }
             }
