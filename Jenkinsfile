@@ -49,10 +49,16 @@ pipeline {
             steps {
                 script {
                     if (operation == 'launch') {
+
+                        long timestamp = System.currentTimeMillis() / 1000;
+                        file_name = "test-app-" + timestamp + ".zip"
                         dir("src"){
                             sh 'npm ci'
+                            sh "zip -r ../${file_name} *"
                         }
+
                         echo "package src dir to ${assets_bucket}"
+                        sh "aws s3 cp ${file_name} s3://${assets_bucket}"
                     }
                 }
             }
