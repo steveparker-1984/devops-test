@@ -1,6 +1,7 @@
 pipeline {
     environment {
         AWS_DEFAULT_REGION = 'eu-west-1'
+        AWS_PROFILE = "default"
     }
     agent any
     stages {
@@ -36,8 +37,7 @@ pipeline {
         stage("Deploy Prerequisites") {
             steps {
                 script {
-                    echo "placeholder"
-                    // sh "sceptre --var branch=${branch} ${input_params.Operation} dev/prerequisites"
+                    sh "sceptre --var branch=${branch} ${operation} dev/prerequisites"
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
             steps {
                 script {
                     echo "placeholder"
-                    // sh "sceptre --var branch=${branch} ${input_params.Operation} dev/app"
+                    sh "sceptre --var branch=${branch} ${operation} dev/app"
                 }
             }
         }

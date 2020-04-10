@@ -30,6 +30,8 @@ Create a public Github repository and push your solution in it. Commit often - w
 
 ## Usage
 
+### One time Jenkins setup
+
 Build a docker image for jenkins
 
 ```bash
@@ -39,7 +41,7 @@ docker build -t localjenkins .
 Then run it
 
 ```bash
-docker run -p 8080:8080 -p 50000:50000 -v $HOME/.aws/credentials:/home/jenkins/.aws/credentials:ro localjenkins:latest
+docker run -p 8080:8080 -v $HOME/.aws/credentials:/var/jenkins_home/.aws/credentials:ro localjenkins:latest
 ```
 
 - Note the initial admin password printed to stdout
@@ -48,6 +50,11 @@ docker run -p 8080:8080 -p 50000:50000 -v $HOME/.aws/credentials:/home/jenkins/.
 
 - Create a local admin user using the form and start jenkins
 
-- Open blueocean, create a pipeline. Select git and use the https url for this repo. For credential, enter your github username and a personal access token.
+- Navigate to Manage Jenkins > Manage Plugins. Select the Available tab, search and install Blue Ocean.
 
-- 
+- Open Blue Ocean, create a pipeline. Select git and use https://github.com/steveparker-1984/devops-test.git for the URL. For credential, enter your github username and a personal access token.
+
+- A build will trigger automatically. See Build section below for more info
+
+### Build
+
