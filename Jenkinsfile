@@ -16,8 +16,10 @@ pipeline {
         }
 
         stage ('Prep') {
-            script {
-                branch = GIT_BRANCH.replaceAll("[^A-Za-z0-9]", "")
+            steps {
+                script {
+                    branch = GIT_BRANCH.replaceAll("[^A-Za-z0-9]", "")
+                }
             }
         }
 
