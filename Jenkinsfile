@@ -43,14 +43,12 @@ pipeline {
         }
 
         stage("Package App") {
-            when {
-                expression { input_params.Operation == 'launch' }
-            }
             steps {
                 script {
-                    echo "placeholder"
-                    // sh 'npm ci'
-                    
+                    if (input_params.Operation == 'launch') {
+                        echo "placeholder"
+                        // sh 'npm ci'
+                    }
                 }
             }
         }
