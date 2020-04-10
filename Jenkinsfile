@@ -68,7 +68,7 @@ pipeline {
             steps {
                 script {
                     echo "placeholder"
-                    sh "sceptre --var branch=${branch} ${operation} dev/app -y"
+                    sh "sceptre --var branch=${branch} --var asset=${file_name} ${operation} dev/app -y"
                 }
             }
         }

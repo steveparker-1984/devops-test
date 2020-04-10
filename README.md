@@ -50,11 +50,16 @@ docker run -p 8080:8080 -v $HOME/.aws/credentials:/var/jenkins_home/.aws/credent
 
 - Create a local admin user using the form and start jenkins
 
-- Navigate to Manage Jenkins > Manage Plugins. Select the Available tab, search and install Blue Ocean.
+- Navigate to Manage Jenkins > Manage Plugins. Select the Available tab, search and install Blue Ocean. Restart Jenkins if it doesn't automatically.
 
-- Open Blue Ocean, create a pipeline. Select git and use https://github.com/steveparker-1984/devops-test.git for the URL. For credential, enter your github username and a personal access token.
+- Log back in. Open Blue Ocean and create a pipeline. Select git and use https://github.com/steveparker-1984/devops-test.git for the URL. It should not need a credential setting.
 
-- A build will trigger automatically. See Build section below for more info
+- A build will trigger automatically. See Build section below for more information.
 
 ### Build
 
+The build asks for a parameter to launch or delete. These correlate with sceptre commands, which is a cli tool which assists with deploying cloudformation. When you launch, an initial stack will be launched contained prerequisites: a vpc setup and an assets bucket. Typically these would already exist outside of this pipeline.
+
+The app is then packaged and pushed to the s3 assets bucket. The package in s3 is timestamped. 
+
+The package is then fed into the second cloudformation stack for deployment. This stack contains: TODO
