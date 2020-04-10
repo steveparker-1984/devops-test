@@ -26,3 +26,28 @@ Create a public Github repository and push your solution in it. Commit often - w
 
 - `npm test` runs the application tests	- `npm test` runs the application tests
 - `npm start` starts the http server
+
+
+## Usage
+
+Build a docker image for jenkins
+
+```bash
+docker build -t localjenkins .
+```
+
+Then run it
+
+```bash
+docker run -p 8080:8080 -p 50000:50000 -v $HOME/.aws/credentials:/home/jenkins/.aws/credentials:ro localjenkins:latest
+```
+
+- Note the initial admin password printed to stdout
+
+- Navigate to http://localhost:8080, unlock Jenkins with the initial password, and install suggested plugins.
+
+- Create a local admin user using the form and start jenkins
+
+- Open blueocean, create a pipeline. Select git and use the https url for this repo. For credential, enter your github username and a personal access token.
+
+- 
