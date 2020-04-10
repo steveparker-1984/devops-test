@@ -7,7 +7,7 @@ pipeline {
         stage("Gather Parameters") {
             steps {
                 script {
-                    input_params = input message: 'Please provide parameters', ok: 'Deploy',
+                    operation = input message: 'Please provide parameters', ok: 'Deploy',
                         parameters: [
                             choice(name: 'Operation', choices: ['launch', 'delete'], description: 'What sceptre operation?')
                         ]
@@ -27,8 +27,8 @@ pipeline {
             steps {
                 script {
                     echo "placeholder"
-                    // sh "sceptre --var branch=${branch} validate dev"
-                    // sh "npm test"
+                    sh "sceptre --var branch=${branch} validate dev"
+                    sh "npm test"
                 }
             }
         }
@@ -45,9 +45,8 @@ pipeline {
         stage("Package App") {
             steps {
                 script {
-                    if (input_params.Operation == 'launch') {
-                        echo "placeholder"
-                        // sh 'npm ci'
+                    if (operation == 'launch') {
+                        sh 'npm ci'
                     }
                 }
             }

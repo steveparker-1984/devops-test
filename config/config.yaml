@@ -1,0 +1,2 @@
+project_code: test-{{ var.branch }}
+region: eu-west-1
