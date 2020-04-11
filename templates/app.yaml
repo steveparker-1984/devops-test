@@ -202,3 +202,8 @@ Resources:
       LoadBalancerArn: !Ref LoadBalancer
       Port: '80'
       Protocol: HTTP
+
+Outputs:
+  LoadBalancerDNS:
+    Description: The load balancer DNS name
+    Value: !GetAtt LoadBalancer.DNSName
