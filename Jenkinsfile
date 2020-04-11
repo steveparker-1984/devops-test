@@ -69,7 +69,7 @@ pipeline {
                 script {
                     echo "placeholder"
                     sh "sceptre --var branch=${branch} --var asset=${file_name} ${operation} dev/app -y"
-                    sh "sceptre --var branch=${branch} --var asset=${file_name} --ignore-dependencies list outputs dev/app.yaml --output json"
+                    sh "sceptre --output json --var branch=${branch} --var asset=${file_name} --ignore-dependencies list outputs dev/app.yaml"
                 }
             }
         }
