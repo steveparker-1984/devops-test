@@ -34,12 +34,15 @@ Parameters:
     Type: String
 
   AMI:
+    Description: The AMI to launch the app on
     Type: String
 
   AssetsBucket:
+    Description: The s3 bucket containing deployment artefacts
     Type: String
 
   Asset:
+    Description: The artefact to deploy
     Type: String
 
   VpcId:
