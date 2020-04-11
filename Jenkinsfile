@@ -19,6 +19,7 @@ pipeline {
         stage ('Prep') {
             steps {
                 script {
+                    // sanitise the branch name, we'll use it for resource naming
                     branch = GIT_BRANCH.replaceAll("[^A-Za-z0-9]", "")
                 }
             }
