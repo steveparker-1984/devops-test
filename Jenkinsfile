@@ -27,7 +27,7 @@ pipeline {
         stage ('Tests') {
             steps {
                 script {
-                    sh "sceptre --var branch=${branch} validate dev"
+                    sh "sceptre --var branch=${branch} --var asset=test.zip validate dev"
                     
                     dir("src"){
                         sh "npm test"

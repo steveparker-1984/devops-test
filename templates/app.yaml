@@ -190,6 +190,7 @@ Resources:
       Port: 3000
       Protocol: HTTP
       VpcId: !Ref VpcId
+      HealthyThresholdCount: 2
 
   Listener:
     Type: AWS::ElasticLoadBalancingV2::Listener
