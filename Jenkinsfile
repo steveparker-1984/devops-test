@@ -39,7 +39,7 @@ pipeline {
         stage("Deploy Prerequisites") {
             steps {
                 script {
-                    sh "sceptre --var branch=${branch} ${operation} dev/prerequisites -y"
+                    sh "sceptre --var branch=${branch} --var asset=test.zip ${operation} dev/prerequisites -y"
                     assets_bucket = sh(script:"eval \$(sceptre --var branch=master --ignore-dependencies list outputs dev/prerequisites.yaml --export=envvar) && echo \$SCEPTRE_AssetsBucket", returnStdout: true).trim()
                 }
             }
